@@ -20,12 +20,12 @@ namespace WebApplication3.Pages
 
         public void OnGet()
         {
-            Message = "Get action used";
+            Message = "Get used";
         }
 
         public void OnPost()
         {
-            Message = "Post action used";
+            Message = "Post used";
         }
     }
 }
