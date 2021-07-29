@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: self-hosted
 
     steps:
@@ -27,7 +27,18 @@ jobs:
       run: dotnet build --configuration Release
 
     - name: dotnet publish
-      run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp      
+      run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp   
+      
+  deploy:
+    runs-on: self-hosted
+    needs: build
+
+    steps:
+    - name: Deploy to IIS
+      run: |
+        %windir%\system32\inetsrv\appcmd start site /site.name:WebAppDemo
+        Copy-Item ./bin/Release/net5.0/* E:/wwwroot/WebAppDemo -Recurse -Force
+        %windir%\system32\inetsrv\appcmd stop site /site.name:WebAppDemo
       
     
 # %windir%\system32\inetsrv\appcmd start site /site.name:string
