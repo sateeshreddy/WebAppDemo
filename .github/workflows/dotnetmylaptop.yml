@@ -28,5 +28,12 @@ jobs:
 
     - name: dotnet publish
       run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+      
+      
+    - name: Deploy to IIS
+      run: |
+        iisreset /stop
+        Copy-Item ./WebAppDemo/* C:/inetpub/wwwroot/WebAppDemo -Recurse -Force
+        iisreset /start
 
    
