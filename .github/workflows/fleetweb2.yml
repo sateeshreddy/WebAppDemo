@@ -36,9 +36,9 @@ jobs:
     steps:
     - name: Deploy to IIS
       run: |
-        %windir%\system32\inetsrv\appcmd start site /site.name:WebAppDemo
+        C:\Windows\system32\inetsrv\appcmd start site /site.name:WebAppDemo
         Copy-Item ./bin/Release/net5.0/* E:/wwwroot/WebAppDemo -Recurse -Force
-        %windir%\system32\inetsrv\appcmd stop site /site.name:WebAppDemo
+        C:\Windows\system32\inetsrv\appcmd stop site /site.name:WebAppDemo
       
     
 # %windir%\system32\inetsrv\appcmd start site /site.name:string
