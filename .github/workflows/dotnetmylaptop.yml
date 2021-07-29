@@ -27,13 +27,15 @@ jobs:
       run: dotnet build --configuration Release
 
     - name: dotnet publish
-      run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
-      
+      run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp      
       
     - name: Deploy to IIS
       run: |
         iisreset /stop
         Copy-Item ./bin/Release/net5.0/* C:/inetpub/wwwroot/WebAppDemo -Recurse -Force
         iisreset /start
+
+# %windir%\system32\inetsrv\appcmd start site /site.name:string
+# %windir%\system32\inetsrv\appcmd stop site /site.name:string
 
    
