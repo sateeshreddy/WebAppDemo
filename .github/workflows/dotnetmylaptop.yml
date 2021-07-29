@@ -33,7 +33,7 @@ jobs:
     - name: Deploy to IIS
       run: |
         iisreset /stop
-        Copy-Item ./* C:/inetpub/wwwroot/WebAppDemo -Recurse -Force
+        Copy-Item ./bin/Release/net5.0/* C:/inetpub/wwwroot/WebAppDemo -Recurse -Force
         iisreset /start
 
    
